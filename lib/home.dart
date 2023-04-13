@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 800),
       vsync: this,
     );
     _animation = Tween<double>(begin: 0, end: 200).animate(_controller!)
@@ -125,7 +125,6 @@ class _MyHomePageState extends State<MyHomePage>
 
     score = score + (10 - distance.toInt());
 
-
     _animation =
         Tween<double>(begin: 0, end: vectorDistance * 2).animate(_controller!)
           ..addListener(() {
@@ -144,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage>
     _controller!.forward();
 
     // wait for 1 second and then reset the round
-    var duration = const Duration(seconds: 1);
+    var duration = const Duration(milliseconds: 800);
     Timer(duration, _resetRound);
   }
 
@@ -169,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   // countDown counter to zero seconds and then move the block to a random position
   _countDown() {
-    var duration = const Duration(seconds: 1);
+    var duration = const Duration(milliseconds: 600);
     Timer.periodic(duration, (Timer timer) {
       setState(() {
         if (counter < 1) {
@@ -188,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage>
       counter = 3;
       timerVisible = true;
     });
-    var duration = const Duration(seconds: 1);
+    var duration = const Duration(milliseconds: 600);
     Timer.periodic(duration, (Timer timer) {
       setState(() {
         if (counter < 1) {
@@ -213,11 +212,8 @@ class _MyHomePageState extends State<MyHomePage>
               guessVisible = false;
               blockVisible = false;
               startButtonVisible = true;
-
             });
           }
-
-
         } else {
           counter = counter - 1;
         }
@@ -248,17 +244,46 @@ class _MyHomePageState extends State<MyHomePage>
                 )
               : Container(),
           textVisible
-              ? const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Center(
-                    child: Text(
-                      'Guess the next position',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: Text(
+                          'Round $currentRound of $totalRounds',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Center(
+                        child: Text(
+                          'Tap ! Tap ! Tap !',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Center(
+                        child: Text(
+                          'Guess the next position',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               : Container(),
           timerVisible
@@ -312,7 +337,6 @@ class _MyHomePageState extends State<MyHomePage>
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-
                   ),
                 )
               : Container(),
@@ -327,36 +351,57 @@ class _MyHomePageState extends State<MyHomePage>
                       color: Colors.red,
                       shape: BoxShape.circle,
                     ),
-
                   ),
                 )
               : Container(),
-          tapEnabled? GestureDetector(
-            onTapUp: (TapUpDetails details) => _onTapUp(details),
-            child: Container(
-              color: Colors.white10,
-            ),
-          ): Container(),
+          tapEnabled
+              ? GestureDetector(
+                  onTapUp: (TapUpDetails details) => _onTapUp(details),
+                  child: Container(
+                    color: Colors.white10,
+                  ),
+                )
+              : Container(),
           startButtonVisible
               ? Center(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, backgroundColor: Colors.black,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Your score is $score',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                      onPressed: () {
-                        _getMaxDistance();
-                        setState(() {
-                          score = 0;
-                          currentRound = 1;
-                          textVisible = true;
-                          startButtonVisible = false;
-                          tapEnabled = true;
-                        });
-                      },
-                      child: const Text("Start", style: TextStyle(fontWeight: FontWeight.bold ),),),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.black,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(2)),
+                          ),
+                        ),
+                        onPressed: () {
+                          _getMaxDistance();
+                          setState(() {
+                            score = 0;
+                            currentRound = 1;
+                            textVisible = true;
+                            startButtonVisible = false;
+                            tapEnabled = true;
+                          });
+                        },
+                        child: const Text(
+                          "Start",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               : Container(),
         ],
