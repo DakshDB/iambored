@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iambored/spotDot/home.dart';
+import 'package:iambored/SpotDot/home.dart';
 
 import 'LifeGame/home.dart';
 
