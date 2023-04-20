@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:iambored/LifeGame/home.dart';
 import 'home.dart';
 
 void main() {
@@ -19,10 +19,11 @@ class MyApp extends StatelessWidget {
       title: 'I am Bored',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // Primary color black
+        primaryColor: Colors.black,
 
-        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Home(),
     );
   }
 }
