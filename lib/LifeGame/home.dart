@@ -27,7 +27,7 @@ class _LifeGameState extends State<LifeGame> {
   int maxRow = 72;
   int maxColumns = 72;
 
-  int generationTime = 100;
+  int generationTime = 200;
 
   // Create a 2D array of bool to represent the cells of the game board specified by rows and columns
   List<List<bool>> cells = List.generate(
