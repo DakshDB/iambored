@@ -23,7 +23,7 @@ class _CatchDotState extends State<CatchDot> {
   var currTimer = 30;
 
   // Dot speed is the frequency of the dot movement in milliseconds
-  var dotSpeed = 500;
+  var dotSpeed = 700;
 
   var score = 0;
 
@@ -53,11 +53,11 @@ class _CatchDotState extends State<CatchDot> {
     var ranX = random.nextInt(100);
     var ranY = random.nextInt(100);
 
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height - 64;
+    width = MediaQuery.of(context).size.width - 64;
 
-    var x = ranX * width / 100;
-    var y = ranY * height / 100;
+    var x = ranX * width / 100 + 32;
+    var y = ranY * height / 100 + 32;
 
     setState(() {
       blockX = x;
@@ -72,7 +72,7 @@ class _CatchDotState extends State<CatchDot> {
     Timer.periodic(
       timerPeriod,
           (Timer timer) {
-        if (timer.tick == timerDuration/(dotSpeed/1000)) {
+        if (timer.tick >= timerDuration/(dotSpeed/1000)) {
           timer.cancel();
           setState(() {
             blockVisible = false;
