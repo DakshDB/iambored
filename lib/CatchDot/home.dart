@@ -23,7 +23,7 @@ class _CatchDotState extends State<CatchDot> {
   var currTimer = 30;
 
   // Dot speed is the frequency of the dot movement in milliseconds
-  var dotSpeed = 700;
+  var dotSpeed = 650;
 
   var score = 0;
 
