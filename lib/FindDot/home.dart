@@ -43,10 +43,11 @@ class _FindDotState extends State<FindDot> {
   var boardVisible = false;
 
   var dotSize = 32.0;
+  var minDotSize = 20.0;
 
   List<Dot> dots = [];
 
-  List<Color> colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.purple, Colors.orange, Colors.teal, Colors.brown, Colors.grey];
+  List<Color> colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.purple, Colors.orange, Colors.grey];
 
 
   _getRandomColor() {
@@ -63,6 +64,13 @@ class _FindDotState extends State<FindDot> {
 
     var numDots = 100 * colors.length;
     dotSize = sqrt(area / numDots);
+
+    if (dotSize < minDotSize) {
+      dotSize = minDotSize;
+    }
+
+    print("Dot size: $dotSize");
+
 
     for (var i = 0; i < numDots; i++) {
       _createDot();
