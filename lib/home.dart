@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iambored/CatchDot/home.dart';
+import 'package:iambored/SpeedClicker/home.dart';
 import 'package:iambored/SpotDot/home.dart';
 
 import 'LifeGame/home.dart';
@@ -69,6 +70,21 @@ class _HomeState extends State<Home> {
                 );
               },
               child: const Text('Catch Dot'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SpeedClicker(),
+                  ),
+                );
+              },
+              child: const Text('Speed Clicker'),
             ),
 
           ],
