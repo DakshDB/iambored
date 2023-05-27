@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../Leaderboard/Services/ScoreRecorder.dart';
+
 class Dot {
   double x;
   double y;
@@ -68,9 +70,6 @@ class _FindDotState extends State<FindDot> {
     if (dotSize < minDotSize) {
       dotSize = minDotSize;
     }
-
-    print("Dot size: $dotSize");
-
 
     for (var i = 0; i < numDots; i++) {
       _createDot();
@@ -163,6 +162,7 @@ class _FindDotState extends State<FindDot> {
 
   _endGame() {
     // Add 1 second pause before showing the start button
+    recordScore("find_dot", score.toDouble());
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         startButtonVisible = true;
@@ -214,6 +214,24 @@ class _FindDotState extends State<FindDot> {
                     },
                     child: const Text('Start'),
                   ),
+                  const SizedBox(height: 20),
+                  // Back button
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0),
+                              side: const BorderSide(color: Colors.black)
+                          )
+                      ),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                  ),
                 ],
               ),
             ),
@@ -252,7 +270,7 @@ class _FindDotState extends State<FindDot> {
                             ) :
                             // Start timer
                             Text(
-                              '$startTimerString',
+                              startTimerString,
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
                           ],

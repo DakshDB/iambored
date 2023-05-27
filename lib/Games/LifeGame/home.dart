@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:iambored/LifeGame/board.dart';
 
+import 'board.dart';
 import 'config/rules.dart';
 import 'models/rule.dart';
 
@@ -42,7 +42,6 @@ class _LifeGameState extends State<LifeGame> {
       }
     }
   }
-
 
   void nextGeneration() {
     List<List<bool>> newCells = List.generate(
@@ -121,8 +120,6 @@ class _LifeGameState extends State<LifeGame> {
 
       columns = min(columns, maxColumns);
       rows = (columns * ratio).round();
-
-      print("rows: $rows, columns: $columns");
 
       cells = List.generate(rows, (i) => List.generate(columns, (i) => false),
           growable: false);
@@ -241,33 +238,58 @@ class _LifeGameState extends State<LifeGame> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: size.height * 0.04,
-                  width: size.width * 0.5,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.black,
-                    ),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => const AlertDialog(
-                          title: Text("How to play", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          content: Text(
-                              "The Life games is played on a grid of cells, where each cell can be either alive or dead. "
-                                  "At each step in time, the following transitions occur:\n\n"
-                                  "1. Any live cell with surrounded by mentioned 'S' cells survives to the next generation.\n"
-                                  "2. Any live cell with more or less than 'S' live neighbors dies, as if by underpopulation or overpopulation.\n"
-                                  "3. Any dead cell with exactly 'B' live neighbors becomes a live cell, as if by reproduction.\n"
-                              ),
-                          actions: <Widget>[],
-                        ),
-                      );
-                    },
-                    child: const Text("How to play"),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            side: const BorderSide(color: Colors.black))),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
                   ),
-                )
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => const AlertDialog(
+                        title: Text("How to play",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        content: Text(
+                            "The Life games is played on a grid of cells, where each cell can be either alive or dead. "
+                            "At each step in time, the following transitions occur:\n\n"
+                            "1. Any live cell with surrounded by mentioned 'S' cells survives to the next generation.\n"
+                            "2. Any live cell with more or less than 'S' live neighbors dies, as if by underpopulation or overpopulation.\n"
+                            "3. Any dead cell with exactly 'B' live neighbors becomes a live cell, as if by reproduction.\n"),
+                        actions: <Widget>[],
+                      ),
+                    );
+                  },
+                  child: const Text("How to play",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
+                ),
+                const SizedBox(height: 20),
+                // Back button
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            side: const BorderSide(color: Colors.black))),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
+                ),
               ],
             ),
           )

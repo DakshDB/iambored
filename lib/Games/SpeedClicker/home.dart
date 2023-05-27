@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart';
+import 'package:iambored/Leaderboard/Services/ScoreRecorder.dart';
 
 class SpeedClicker extends StatefulWidget {
   const SpeedClicker({super.key});
@@ -43,7 +44,6 @@ class _SpeedClickerState extends State<SpeedClicker> {
   _startTimer() {
     gameTimer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       setState(() {
-        print("stopwatchText: $stopwatchText");
         stopwatchText =
             (double.parse(stopwatchText) + 0.001).toStringAsFixed(3);
       });
@@ -99,6 +99,24 @@ class _SpeedClickerState extends State<SpeedClicker> {
                           _startGame();
                         },
                         child: const Text('Start'),
+                      ),
+                      const SizedBox(height: 20),
+                      // Back button
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  side: const BorderSide(color: Colors.black)
+                              )
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
                       ),
                     ],
                   )
@@ -156,6 +174,7 @@ class _SpeedClickerState extends State<SpeedClicker> {
                         onTap: () {
                           if (tapEnabled) {
                             setState(() {
+                              recordScore('speed_clicker', double.parse(stopwatchText));
                               lightsVisible = false;
                               startButtonVisible = true;
                               score = stopwatchText;
@@ -187,7 +206,6 @@ class _SpeedClickerState extends State<SpeedClicker> {
                               yellowLightTimer?.cancel();
                               greenLightTimer?.cancel();
                             });
-                            print('Tap disabled');
                           }
                         },
                         child: Container(

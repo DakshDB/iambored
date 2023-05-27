@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:iambored/CatchDot/home.dart';
-import 'package:iambored/FindDot/home.dart';
-import 'package:iambored/SpeedClicker/home.dart';
-import 'package:iambored/SpotDot/home.dart';
 
-import 'LifeGame/home.dart';
+import 'Games/CatchDot/home.dart';
+import 'Games/FindDot/home.dart';
+import 'Games/LifeGame/home.dart';
+import 'Games/SpeedClicker/home.dart';
+import 'Games/SpotDot/home.dart';
+import 'Leaderboard/home.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -101,6 +103,28 @@ class _HomeState extends State<Home> {
                 );
               },
               child: const Text('Find Dot'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+                style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            side: const BorderSide(color: Colors.black)
+                        )
+                    ),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Leaderboard(),
+                  ),
+                );
+              },
+              child: const Text('Leaderboard', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
             ),
 
           ],

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:iambored/Leaderboard/Services/ScoreRecorder.dart';
 
 class SpotDot extends StatefulWidget {
   const SpotDot({super.key});
@@ -203,6 +204,7 @@ class _SpotDotState extends State<SpotDot>
               tapEnabled = true;
             });
           } else {
+            recordScore("spot_dot", score.toDouble());
             setState(() {
               timerVisible = false;
               textVisible = false;
@@ -398,6 +400,24 @@ class _SpotDotState extends State<SpotDot>
                           "Start",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Back button
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  side: const BorderSide(color: Colors.black)
+                              )
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

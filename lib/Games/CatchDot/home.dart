@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:iambored/Leaderboard/Services/ScoreRecorder.dart';
 
 class CatchDot extends StatefulWidget {
   const CatchDot({super.key});
@@ -80,8 +81,8 @@ class _CatchDotState extends State<CatchDot> {
             textVisible = true;
             tapEnabled = false;
             startButtonVisible = true;
-
           });
+          recordScore('catch_dot', score.toDouble());
         } else {
           setState(() {
             _moveToRandomPosition();
@@ -187,6 +188,24 @@ class _CatchDotState extends State<CatchDot> {
                           "Start",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Back button
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  side: const BorderSide(color: Colors.black)
+                              )
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iambored/LifeGame/home.dart';
+import 'Leaderboard/Services/ScoreRecorder.dart';
 import 'home.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await initializeScoreRecorder();
   runApp(const MyApp());
 }
 
