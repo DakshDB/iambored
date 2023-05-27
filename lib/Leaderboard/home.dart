@@ -50,301 +50,318 @@ class _LeaderboardState extends State<Leaderboard> {
     }
 
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: width,
-          height: height,
-          child: Column(
-            children: [
-              SizedBox(
-                width: width,
-                height: height * 0.9,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Leaderboard',
-                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    // Row of buttons for each game
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.black,
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  height: height * 0.9,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Leaderboard',
+                        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      // Row of buttons for each game
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(
+                          scrollbars: false,
+                        ),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'speed_clicker';
+                                  getData(game);
+                                },
+                                child: const Text('Speed Clicker'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'spot_dot';
+                                  getData(game);
+                                },
+                                child: const Text('Spot Dot'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'catch_dot';
+                                  getData(game);
+                                },
+                                child: const Text('Catch Dot'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'find_dot';
+                                  getData(game);
+                                },
+                                child: const Text('Find Dot'),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            var game = 'speed_clicker';
-                            getData(game);
-                          },
-                          child: const Text('Speed Clicker'),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.black,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+
+                      // Add separator line
+                      Container(
+                        height: 1,
+                        color: Colors.black,
+                      ),
+
+                      const SizedBox(
+                        height: 40,
+                      ),
+
+                      // Section to display Best Scores, Average Scores, and Number of Games Played
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          // Average Score
+                          Column(
+                            children: [
+                              Text(
+                                'Average',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                averageScore.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            var game = 'spot_dot';
-                            getData(game);
-                          },
-                          child: const Text('Spot Dot'),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.black,
+                          // Best Score
+                          Column(
+                            children: [
+                              Text(
+                                'Best',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                bestScore.score.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            var game = 'catch_dot';
-                            getData(game);
-                          },
-                          child: const Text('Catch Dot'),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.black,
+                          // Games Played
+                          Column(
+                            children: [
+                              Text(
+                                'Games',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                gamesPlayed.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            var game = 'find_dot';
-                            getData(game);
-                          },
-                          child: const Text('Find Dot'),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                        ],
+                      ),
 
-                    // Add separator line
-                    Container(
-                      height: 1,
-                      width: width,
-                      color: Colors.black,
-                    ),
-
-                    const SizedBox(
-                      height: 40,
-                    ),
-
-                    // Section to display Best Scores, Average Scores, and Number of Games Played
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        // Average Score
-                        Column(
-                          children: [
-                            Text(
-                              'Average Score',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              averageScore.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        // Best Score
-                        Column(
-                          children: [
-                            Text(
-                              'Best Score',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              bestScore.score.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        // Games Played
-                        Column(
-                          children: [
-                            Text(
-                              'Games Played',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              gamesPlayed.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    // Add separator line
-                    Container(
-                      height: 1,
-                      width: width,
-                      color: Colors.black,
-                    ),
-                    // Section to display the top 10 scores and paginate through the rest
-                    // Table of scores
-                    Expanded(
-                      child: SizedBox(
-                        width: width,
-                        child: ScrollConfiguration(
-                          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: DataTable(
-                              columns: const <DataColumn>[
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Rank',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontStyle: FontStyle.italic),
-                                        ),
-                                      ],
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      // Add separator line
+                      Container(
+                        height: 1,
+                        color: Colors.black,
+                      ),
+                      // Section to display the top 10 scores and paginate through the rest
+                      // Table of scores
+                      Expanded(
+                        child: SizedBox(
+                          child: ScrollConfiguration(
+                            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: DataTable(
+                                columns: const <DataColumn>[
+                                  DataColumn(
+                                    label: Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Rank',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Score',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontStyle: FontStyle.italic),
-                                        ),
-                                      ],
+                                  DataColumn(
+                                    label: Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Score',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Date',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontStyle: FontStyle.italic),
-                                        ),
-                                      ],
+                                  DataColumn(
+                                    label: Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Date',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                              rows: List<DataRow>.generate(
-                                scores.length,
-                                (int index) => DataRow(
-                                  cells: <DataCell>[
-                                    DataCell(Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text((index + 1).toString()),
-                                      ],
-                                    )),
-                                    DataCell(Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(scores[index].score.toString()),
-                                      ],
-                                    )),
-                                    DataCell(Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(DateFormat('dd-MM-yyyy / kk:mm')
-                                            .format(scores[index].timestamp)),
-                                      ],
-                                    )),
-                                  ],
+                                ],
+                                rows: List<DataRow>.generate(
+                                  scores.length,
+                                  (int index) => DataRow(
+                                    cells: <DataCell>[
+                                      DataCell(Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text((index + 1).toString()),
+                                        ],
+                                      )),
+                                      DataCell(Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(scores[index].score.toString()),
+                                        ],
+                                      )),
+                                      DataCell(Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(DateFormat('dd-MM-yyyy / kk:mm')
+                                              .format(scores[index].timestamp)),
+                                        ],
+                                      )),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+              SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Add separator line
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0),
+                                side: const BorderSide(color: Colors.black)
+                            )
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
               ),
-            SizedBox(
-              height: height * 0.1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // Add separator line
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0),
-                              side: const BorderSide(color: Colors.black)
-                          )
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                  ),
-                ],
-              ),
+              ],
             ),
-            ],
           ),
         ),
       ),
