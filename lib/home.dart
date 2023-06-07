@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Games/CatchDot/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/LifeGame/home.dart';
+import 'Games/Maze/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpotDot/home.dart';
 import 'Leaderboard/home.dart';
@@ -103,6 +104,21 @@ class _HomeState extends State<Home> {
                 );
               },
               child: const Text('Find Dot'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Maze(),
+                  ),
+                );
+              },
+              child: const Text('Maze'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
