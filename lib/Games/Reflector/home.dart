@@ -36,6 +36,8 @@ class _ReflectorState extends State<Reflector> {
         screenHeight = MediaQuery.of(context).size.height;
         ballPositionX = screenWidth / 2;
         ballPositionY = screenHeight / 5;
+
+        barPositionY = screenHeight * 0.2;
       });
     });
   }
@@ -66,8 +68,8 @@ class _ReflectorState extends State<Reflector> {
           ballSpeedY *= -1; // Reverse the Y direction
         }
 
-        // Check game over condition
-        if (ballPositionY + ballRadius >= screenHeight) {
+        // Check game over : ball falls below the bar position
+        if (ballPositionY + ballRadius >= screenHeight - barPositionY + barHeight) {
           gameOver();
         }
       });
@@ -205,18 +207,19 @@ class _ReflectorState extends State<Reflector> {
                         ],
                       ),
                     ),
-              Positioned(
-                top: ballPositionY - ballRadius,
-                left: ballPositionX - ballRadius,
-                child: Container(
-                  width: ballRadius * 2,
-                  height: ballRadius * 2,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
+              if (isGameRunning)
+                Positioned(
+                  top: ballPositionY - ballRadius,
+                  left: ballPositionX - ballRadius,
+                  child: Container(
+                    width: ballRadius * 2,
+                    height: ballRadius * 2,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
-              ),
               Positioned(
                 bottom: barPositionY,
                 left: barPositionX,
