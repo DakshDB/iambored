@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 class Board extends StatefulWidget {
   Board(
-      {Key? key, required this.grid, required this.rows, required this.columns, required this.start, required this.end, required this.currentPos, required this.path})
+      {Key? key,
+      required this.grid,
+      required this.rows,
+      required this.columns,
+      required this.start,
+      required this.end,
+      required this.currentPos,
+      required this.path})
       : super(key: key);
 
   final int rows;
@@ -51,52 +58,49 @@ class _BoardState extends State<Board> {
             int y = index ~/ grid[0].length;
             int cell = grid[y][x];
 
-            print("x: $x, y: $y, cell: $cell");
-            print("top: ${cell & N == 0}, bottom: ${cell & S == 0}, left: ${cell & W == 0}, right: ${cell & E == 0}");
-
             return Stack(
               children: [
                 // Mark start and end
                 Positioned.fill(
                   child: (x == widget.start.dx && y == widget.start.dy)
                       ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
                             color: Colors.green,
                           ),
-                      )
+                        )
                       : Container(),
                 ),
                 Positioned.fill(
                   child: (x == widget.end.dx && y == widget.end.dy)
                       ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
                             color: Colors.red,
                           ),
-                      )
+                        )
                       : Container(),
                 ),
                 // Mark current position
                 Positioned.fill(
                   child: (x == widget.currentPos.dx && y == widget.currentPos.dy)
                       ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
                             color: Colors.blue,
                           ),
-                      )
+                        )
                       : Container(),
                 ),
                 // Mark path
                 Positioned.fill(
                   child: widget.path.contains(Offset(x.toDouble(), y.toDouble()))
                       ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
                             color: Colors.yellow,
                           ),
-                      )
+                        )
                       : Container(),
                 ),
                 // Draw walls
@@ -106,16 +110,14 @@ class _BoardState extends State<Board> {
                       : Container(
                           decoration: BoxDecoration(
                             border: Border(
-                              bottom: (cell & S != 0) ? BorderSide.none :  const BorderSide(),
-                              right: (cell & E != 0) ? BorderSide.none :  const BorderSide(),
-                              top: (cell & N != 0) ? BorderSide.none :  const BorderSide(),
-                              left: (cell & W != 0) ? BorderSide.none :  const BorderSide(),
+                              bottom: (cell & S != 0) ? BorderSide.none : const BorderSide(),
+                              right: (cell & E != 0) ? BorderSide.none : const BorderSide(),
+                              top: (cell & N != 0) ? BorderSide.none : const BorderSide(),
+                              left: (cell & W != 0) ? BorderSide.none : const BorderSide(),
                             ),
                           ),
                         ),
                 ),
-
-
               ],
             );
           },
