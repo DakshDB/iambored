@@ -23,16 +23,12 @@ class _LeaderboardState extends State<Leaderboard> {
   @override
   initState() {
     super.initState();
-    getData('speed_clicker');
+    getData('reflector');
   }
 
   getData(String game) async {
-    List responses = await Future.wait([
-      getScores(game),
-      getAverageScore(game),
-      getGamesPlayed(game),
-      getBestScore(game)
-    ]);
+    List responses =
+        await Future.wait([getScores(game), getAverageScore(game), getGamesPlayed(game), getBestScore(game)]);
     setState(() {
       scores = responses[0];
       averageScore = responses[1];
@@ -68,8 +64,10 @@ class _LeaderboardState extends State<Leaderboard> {
                       ),
                       Text(
                         'Leaderboard',
-                        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                       // Row of buttons for each game
                       const SizedBox(
@@ -84,6 +82,20 @@ class _LeaderboardState extends State<Leaderboard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'reflector';
+                                  getData(game);
+                                },
+                                child: const Text('Reflector'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
@@ -167,9 +179,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -179,9 +189,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -193,9 +201,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -205,9 +211,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -219,9 +223,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -231,9 +233,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -320,8 +320,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                       DataCell(Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text(DateFormat('dd-MM-yyyy / kk:mm')
-                                              .format(scores[index].timestamp)),
+                                          Text(DateFormat('dd-MM-yyyy / kk:mm').format(scores[index].timestamp)),
                                         ],
                                       )),
                                     ],
@@ -335,31 +334,27 @@ class _LeaderboardState extends State<Leaderboard> {
                     ],
                   ),
                 ),
-              SizedBox(
-                height: height * 0.05,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    // Add separator line
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0),
-                                side: const BorderSide(color: Colors.black)
-                            )
+                SizedBox(
+                  height: height * 0.05,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      // Add separator line
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                         ),
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
               ],
             ),
           ),

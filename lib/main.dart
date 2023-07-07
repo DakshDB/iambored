@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iambored/home.dart';
+
 import 'Leaderboard/Services/ScoreRecorder.dart';
-import 'home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Primary color black
         primaryColor: Colors.black,
-
       ),
       home: const Home(),
     );
   }
 }
-

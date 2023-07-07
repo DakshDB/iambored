@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:iambored/Games/Reflector/home.dart';
 
 import 'Games/CatchDot/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/LifeGame/home.dart';
-import 'Games/Maze/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpotDot/home.dart';
 import 'Leaderboard/home.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,135 +16,149 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'I am Bored',
-              style: Theme.of(context).textTheme.headlineMedium,
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'I am Bored',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LifeGame(),
-                  ),
-                );
-              },
-              child: const Text('Life Game'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SpotDot(),
-                  ),
-                );
-              },
-              child: const Text('Spot Dot'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CatchDot(),
-                  ),
-                );
-              },
-              child: const Text('Catch Dot'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SpeedClicker(),
-                  ),
-                );
-              },
-              child: const Text('Speed Clicker'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FindDot(),
-                  ),
-                );
-              },
-              child: const Text('Find Dot'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Maze(),
-                  ),
-                );
-              },
-              child: const Text('Maze'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-                style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            side: const BorderSide(color: Colors.black)
-                        )
-                    ),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LifeGame(),
                 ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Leaderboard(),
-                  ),
-                );
-              },
-              child: const Text('Leaderboard', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+              );
+            },
+            child: const Text('Life Game'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
             ),
-
-          ],
-        ),
-      )
-    );
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SpotDot(),
+                ),
+              );
+            },
+            child: const Text('Spot Dot'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CatchDot(),
+                ),
+              );
+            },
+            child: const Text('Catch Dot'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SpeedClicker(),
+                ),
+              );
+            },
+            child: const Text('Speed Clicker'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FindDot(),
+                ),
+              );
+            },
+            child: const Text('Find Dot'),
+          ),
+          const SizedBox(height: 20),
+          // ElevatedButton(
+          //   style: ElevatedButton.styleFrom(
+          //     foregroundColor: Colors.white,
+          //     backgroundColor: Colors.black,
+          //   ),
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const Maze(),
+          //       ),
+          //     );
+          //   },
+          //   child: const Text('Maze'),
+          // ),
+          // const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Reflector(),
+                ),
+              );
+            },
+            child: const Text('Reflector'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Leaderboard(),
+                ),
+              );
+            },
+            child: const Text('Leaderboard', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    ));
   }
 }
