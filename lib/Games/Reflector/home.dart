@@ -16,8 +16,8 @@ class _ReflectorState extends State<Reflector> {
   double ballPositionX = 0;
   double ballPositionY = 0;
   double ballRadius = 10;
-  double ballSpeedX = 4;
-  double ballSpeedY = 4;
+  double ballSpeedX = 3.5;
+  double ballSpeedY = 3.5;
   double screenWidth = 0;
   double screenHeight = 0;
   bool isGameRunning = false;
@@ -69,7 +69,7 @@ class _ReflectorState extends State<Reflector> {
         }
 
         // Check game over : ball falls below the bar position
-        if (ballPositionY + ballRadius >= screenHeight - barPositionY + barHeight) {
+        if (ballPositionY + ballRadius >= screenHeight - barPositionY) {
           gameOver();
         }
       });
@@ -92,8 +92,8 @@ class _ReflectorState extends State<Reflector> {
       isGameRunning = true;
       ballPositionX = screenWidth / 2;
       ballPositionY = screenHeight / 5;
-      ballSpeedX = 4;
-      ballSpeedY = 4;
+      ballSpeedX = 3.5;
+      ballSpeedY = 3.5;
 
       // Reset bar width
       barWidth = screenWidth / 3;
