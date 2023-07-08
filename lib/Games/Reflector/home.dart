@@ -11,7 +11,7 @@ class Reflector extends StatefulWidget {
 class _ReflectorState extends State<Reflector> {
   double barPositionX = 0;
   double barPositionY = 20;
-  double barWidth = 100;
+  double barWidth = 200;
   double barHeight = 10;
   double ballPositionX = 0;
   double ballPositionY = 0;
@@ -22,6 +22,7 @@ class _ReflectorState extends State<Reflector> {
   double screenHeight = 0;
   bool isGameRunning = false;
   int score = 0;
+  double difficulty = 1;
 
   @override
   void initState() {
@@ -37,7 +38,10 @@ class _ReflectorState extends State<Reflector> {
         ballPositionX = screenWidth / 2;
         ballPositionY = screenHeight / 5;
 
+        barWidth = screenWidth / 3;
+
         barPositionY = screenHeight * 0.2;
+        barPositionX = screenWidth / 2 - barWidth / 2;
       });
     });
   }
@@ -47,9 +51,15 @@ class _ReflectorState extends State<Reflector> {
       if (!isGameRunning) return;
 
       setState(() {
-        // Move the ball
-        ballPositionX += ballSpeedX;
-        ballPositionY += ballSpeedY;
+        // Move the ball : if the result takes the ball below the bar while the ball is within the left and right edges of the bar, round the ball position to the bar position
+        if (ballPositionY + ballRadius + ballSpeedY >= screenHeight - barPositionY &&
+            ballPositionX + ballRadius >= barPositionX &&
+            ballPositionX - ballRadius <= barPositionX + barWidth) {
+          ballPositionY = screenHeight - barPositionY - ballRadius;
+        } else {
+          ballPositionX += ballSpeedX;
+          ballPositionY += ballSpeedY;
+        }
 
         // Check ball collision with walls
         if (ballPositionX + ballRadius >= screenWidth || ballPositionX - ballRadius <= 0) {
@@ -59,18 +69,20 @@ class _ReflectorState extends State<Reflector> {
           ballSpeedY *= -1; // Reverse the Y direction
         }
 
+        // Check game over: ball falls below the bar position
+        if (ballPositionY + ballRadius >= screenHeight - barPositionY) {
+          gameOver();
+        }
+
         // Check ball collision with the bar
-        if (ballPositionY + ballRadius >= screenHeight - barHeight - barPositionY &&
+        if (ballPositionY + ballRadius >=
+                screenHeight - barHeight - barPositionY && // The ball is at the same level as the bar
+            ballPositionY + ballRadius <= screenHeight - barPositionY && // The ball is not below the bar
             ballPositionX + ballRadius >= barPositionX &&
             ballPositionX - ballRadius <= barPositionX + barWidth) {
           increaseLevel();
-          score++;
+          score += difficulty.toInt();
           ballSpeedY *= -1; // Reverse the Y direction
-        }
-
-        // Check game over : ball falls below the bar position
-        if (ballPositionY + ballRadius >= screenHeight - barPositionY) {
-          gameOver();
         }
       });
 
@@ -83,6 +95,8 @@ class _ReflectorState extends State<Reflector> {
     setState(() {
       isGameRunning = false;
       recordScore("reflector", score.toDouble());
+
+      barPositionX = screenWidth / 2 - barWidth / 2;
     });
   }
 
@@ -92,11 +106,25 @@ class _ReflectorState extends State<Reflector> {
       isGameRunning = true;
       ballPositionX = screenWidth / 2;
       ballPositionY = screenHeight / 5;
-      ballSpeedX = 3.5;
-      ballSpeedY = 3.5;
 
-      // Reset bar width
-      barWidth = screenWidth / 3;
+      // Reset ball speed based on difficulty
+      switch (difficulty.round()) {
+        case 1:
+          ballSpeedX = 3.5;
+          ballSpeedY = 3.5;
+          barWidth = screenWidth / 3;
+          break;
+        case 2:
+          ballSpeedX = 5.5;
+          ballSpeedY = 5.5;
+          barWidth = screenWidth / 4;
+          break;
+        case 3:
+          ballSpeedX = 7.5;
+          ballSpeedY = 7.5;
+          barWidth = screenWidth / 5;
+          break;
+      }
     });
     startGameLoop();
   }
@@ -171,6 +199,61 @@ class _ReflectorState extends State<Reflector> {
                           ),
                           const SizedBox(
                             height: 20,
+                          ),
+                          // Slider to set the level of difficulty : Easy, Medium, Hard
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Difficulty',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              // Slider to set the level of difficulty : Easy, Medium, Hard : 1, 2, 3
+                              SizedBox(
+                                width: screenWidth > 600 ? 300 : screenWidth * 0.5,
+                                child: Slider(
+                                  activeColor: Colors.black,
+                                  inactiveColor: Colors.grey,
+                                  value: difficulty,
+                                  min: 1,
+                                  max: 3,
+                                  divisions: 2,
+                                  label: difficulty == 1
+                                      ? 'Easy'
+                                      : difficulty == 2
+                                          ? 'Medium'
+                                          : 'Hard',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      difficulty = value;
+                                      switch (difficulty.round()) {
+                                        case 1:
+                                          ballSpeedX = 3.5;
+                                          ballSpeedY = 3.5;
+                                          barWidth = screenWidth / 3;
+                                          barPositionX = screenWidth / 2 - barWidth / 2;
+                                          break;
+                                        case 2:
+                                          ballSpeedX = 5.5;
+                                          ballSpeedY = 5.5;
+                                          barWidth = screenWidth / 4;
+                                          barPositionX = screenWidth / 2 - barWidth / 2;
+                                          break;
+                                        case 3:
+                                          ballSpeedX = 7.5;
+                                          ballSpeedY = 7.5;
+                                          barWidth = screenWidth / 5;
+                                          barPositionX = screenWidth / 2 - barWidth / 2;
+                                          break;
+                                      }
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
