@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iambored/Games/OrderOrder/home.dart';
 import 'package:iambored/Games/Reflector/home.dart';
 
 import 'Games/CatchDot/home.dart';
@@ -138,6 +139,22 @@ class _HomeState extends State<Home> {
               );
             },
             child: const Text('Reflector'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const OrderOrder(),
+                ),
+              );
+            },
+            child: const Text('Order Order'),
           ),
           const SizedBox(height: 20),
           ElevatedButton(
