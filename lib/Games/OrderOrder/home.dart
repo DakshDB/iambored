@@ -201,7 +201,7 @@ class _OrderOrderState extends State<OrderOrder> {
 
   _warmUpTimer() {
     var msLeft = warmUpDurationSeconds * 1000;
-    var milliseconds = const Duration(milliseconds: 10);
+    var milliseconds = const Duration(milliseconds: 25);
 
     Timer.periodic(milliseconds, (timer) {
       warmUpTimer = timer;
@@ -343,11 +343,32 @@ class _OrderOrderState extends State<OrderOrder> {
               if (!_isGameStarted && _warmUp)
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Warm up: $warmUpTimerString',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height - 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          warmUpTimerString,
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+                        // How to play
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Tap the numbers in order from smallest to largest.',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
