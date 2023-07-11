@@ -118,6 +118,8 @@ class _OrderOrderState extends State<OrderOrder> {
 
   void _startGame() {
     setState(() {
+      radius = _getRadius();
+
       _level = 1;
       _score = 0;
 
@@ -142,6 +144,24 @@ class _OrderOrderState extends State<OrderOrder> {
     });
     _generateNumbers();
     _warmUpTimer();
+  }
+
+  _getRadius() {
+    // Calculate the radius of the circles based on the screen size
+
+    // For every 200 pixels in width, increase the radius by 10
+    var radiusMultiplier = MediaQuery.of(context).size.width / 200;
+
+    radius = 40 + (radiusMultiplier * 10);
+
+    // Make sure the radius is not too big or too small
+    if (radius > 120) {
+      radius = 120;
+    } else if (radius < 40) {
+      radius = 40;
+    }
+
+    return radius;
   }
 
   _getColors() {
@@ -261,12 +281,12 @@ class _OrderOrderState extends State<OrderOrder> {
       double randomY;
 
       do {
-        randomX = (MediaQuery.of(context).size.width - 150) * (Random().nextDouble());
-        randomY = (MediaQuery.of(context).size.height - 250) * (Random().nextDouble());
+        randomX = (MediaQuery.of(context).size.width - 100 - radius) * (Random().nextDouble());
+        randomY = (MediaQuery.of(context).size.height - 200 - radius) * (Random().nextDouble());
       } while (numbers.any((element) => sqrt(pow(element.x - randomX, 2) + pow(element.y - randomY, 2)) < 100));
 
       Color randomColor = colorLevel[Random().nextInt(colorLevel.length)];
-      numbers.add(_NumberCircle(randomNumber.toInt(), randomX, randomY, 50, randomColor));
+      numbers.add(_NumberCircle(randomNumber.toInt(), randomX, randomY, radius, randomColor));
     }
 
     if (kDebugMode) {
@@ -367,8 +387,8 @@ class _OrderOrderState extends State<OrderOrder> {
                                   });
                                 },
                                 child: Container(
-                                  width: 50,
-                                  height: 50,
+                                  width: radius,
+                                  height: radius,
                                   decoration: BoxDecoration(
                                     color: numbers[i].color,
                                     shape: BoxShape.circle,
