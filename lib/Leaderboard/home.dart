@@ -102,6 +102,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                   backgroundColor: Colors.black,
                                 ),
                                 onPressed: () {
+                                  var game = 'order_order';
+                                  getData(game);
+                                },
+                                child: const Text('Order Order'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
                                   var game = 'speed_clicker';
                                   getData(game);
                                 },
