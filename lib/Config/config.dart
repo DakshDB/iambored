@@ -5,4 +5,5 @@ var gameScoreOrderMap = {
   'speed_clicker': -1,
   'reflector': 1,
   'order_order': 1,
+  'focus': 1,
 };

@@ -116,6 +116,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                   backgroundColor: Colors.black,
                                 ),
                                 onPressed: () {
+                                  var game = 'focus';
+                                  getData(game);
+                                },
+                                child: const Text('Focus ON'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
                                   var game = 'speed_clicker';
                                   getData(game);
                                 },

@@ -4,6 +4,7 @@ import 'package:iambored/Games/Reflector/home.dart';
 
 import 'Games/CatchDot/home.dart';
 import 'Games/FindDot/home.dart';
+import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpotDot/home.dart';
@@ -155,6 +156,22 @@ class _HomeState extends State<Home> {
               );
             },
             child: const Text('Order Order'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FocusOn(),
+                ),
+              );
+            },
+            child: const Text('Focus'),
           ),
           const SizedBox(height: 20),
           ElevatedButton(
