@@ -130,6 +130,13 @@ class _TapperState extends State<Tapper> {
                   child: const Text('Back'),
                 )
               : const SizedBox(height: 20),
+          const SizedBox(height: 20),
+          Text(
+            'Tap the circle as fast as you can',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontSize: 16,
+                ),
+          ),
           const SizedBox(height: 10),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
