@@ -19,14 +19,16 @@ class _LeaderboardState extends State<Leaderboard> {
   var averageScore = 0.0;
   var gamesPlayed = 0;
   List<Score> scores = [];
+  String selectedGame = 'tapper';
 
   @override
   initState() {
     super.initState();
-    getData('reflector');
+    getData(selectedGame);
   }
 
   getData(String game) async {
+    selectedGame = game;
     List responses =
         await Future.wait([getScores(game), getAverageScore(game), getGamesPlayed(game), getBestScore(game)]);
     setState(() {
@@ -82,6 +84,20 @@ class _LeaderboardState extends State<Leaderboard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'tapper';
+                                  getData(game);
+                                },
+                                child: const Text('Tapper'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
@@ -186,6 +202,25 @@ class _LeaderboardState extends State<Leaderboard> {
                       ),
 
                       // Add separator line
+                      Container(
+                        height: 1,
+                        color: Colors.black,
+                      ),
+
+                      // Selected game
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        selectedGame[0].toUpperCase() + selectedGame.substring(1).replaceAll('_', ' '),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         height: 1,
                         color: Colors.black,
