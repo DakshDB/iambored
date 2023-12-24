@@ -8,6 +8,7 @@ import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpotDot/home.dart';
+import 'Games/Tapper/home.dart';
 import 'Leaderboard/home.dart';
 
 class Home extends StatefulWidget {
@@ -172,6 +173,22 @@ class _HomeState extends State<Home> {
               );
             },
             child: const Text('Focus'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Tapper(),
+                ),
+              );
+            },
+            child: const Text('Tapper'),
           ),
           const SizedBox(height: 20),
           ElevatedButton(

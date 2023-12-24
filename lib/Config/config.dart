@@ -6,4 +6,5 @@ var gameScoreOrderMap = {
   'reflector': 1,
   'order_order': 1,
   'focus': 1,
+  'tapper': -1,
 };
