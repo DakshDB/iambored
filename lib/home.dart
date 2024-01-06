@@ -7,6 +7,7 @@ import 'Games/CatchDot/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
+import 'Games/RecallRumble/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpotDot/home.dart';
 import 'Games/Tapper/home.dart';
@@ -32,6 +33,7 @@ class _HomeState extends State<Home> {
     'Focus': const FocusOn(),
     'Tapper': const Tapper(),
     'Alphabet': const Alphabet(),
+    'Recall Rumble': const RecallRumble(),
   };
 
   @override

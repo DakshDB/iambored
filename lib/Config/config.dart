@@ -8,4 +8,5 @@ var gameScoreOrderMap = {
   'focus': 1,
   'tapper': -1,
   'alphabet_order': 1,
+  'recall_rumble': 1,
 };
