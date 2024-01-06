@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iambored/Games/Alphabet/home.dart';
 import 'package:iambored/Games/OrderOrder/home.dart';
 import 'package:iambored/Games/Reflector/home.dart';
 
@@ -189,6 +190,22 @@ class _HomeState extends State<Home> {
               );
             },
             child: const Text('Tapper'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Alphabet(),
+                ),
+              );
+            },
+            child: const Text('Alphabet'),
           ),
           const SizedBox(height: 20),
           ElevatedButton(
