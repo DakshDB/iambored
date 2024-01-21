@@ -9,6 +9,7 @@ import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
 import 'Games/RecallRumble/home.dart';
 import 'Games/SpeedClicker/home.dart';
+import 'Games/SpeedSwipe/home.dart';
 import 'Games/SpotDot/home.dart';
 import 'Games/Tapper/home.dart';
 import 'Leaderboard/home.dart';
@@ -34,6 +35,7 @@ class _HomeState extends State<Home> {
     'Tapper': const Tapper(),
     'Alphabet': const Alphabet(),
     'Recall Rumble': const RecallRumble(),
+    'SpeedSwipe': const SpeedSwipe(),
   };
 
   @override
@@ -121,7 +123,7 @@ class _HomeState extends State<Home> {
 
                   // Generate the repeated text
                   String repeatedText = ' DB ~ ' * repetitions;
-                  repeatedText = '~ ' + repeatedText;
+                  repeatedText = '~ $repeatedText';
 
                   return Text(
                     repeatedText,

@@ -9,4 +9,5 @@ var gameScoreOrderMap = {
   'tapper': -1,
   'alphabet_order': 1,
   'recall_rumble': 1,
+  'speed_swipe': 1,
 };
