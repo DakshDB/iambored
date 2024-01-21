@@ -126,7 +126,7 @@ class _RecallRumbleState extends State<RecallRumble> with SingleTickerProviderSt
             _isStart == true ? const SizedBox(height: 20) : const SizedBox(height: 0),
             _isStart == true
                 ? Text(
-                    "Timer: " + _gameTime.toString(),
+                    "Timer: $_gameTime",
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontSize: 18,
                         ),
@@ -134,7 +134,7 @@ class _RecallRumbleState extends State<RecallRumble> with SingleTickerProviderSt
                 : const SizedBox(height: 0),
             const SizedBox(height: 20),
             Text(
-              "Score: " + _score.toString(),
+              "Score: $_score",
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     fontSize: 18,
                   ),
@@ -210,7 +210,7 @@ class _RecallRumbleState extends State<RecallRumble> with SingleTickerProviderSt
                           backgroundColor: Colors.black,
                         ),
                         onPressed: () => _checkAnswer(false),
-                        child: Text('No'),
+                        child: const Text('No'),
                       ),
                     ],
                   )

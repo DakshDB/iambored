@@ -101,7 +101,7 @@ class _FocusOnState extends State<FocusOn> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '$_time',
+                          _time,
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -154,7 +154,7 @@ class _FocusOnState extends State<FocusOn> {
                         ),
                   ),
                   Text(
-                    '$_time',
+                    _time,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontSize: 24,
                           color: Colors.black,

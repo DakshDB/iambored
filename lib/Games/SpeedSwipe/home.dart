@@ -21,7 +21,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
   int _score = 0;
   int _streak = 1;
 
-  int _roundDurationMs = 1500;
+  final int _roundDurationMs = 1500;
   int _currentRoundDurationMs = 1500;
 
   List<String> moves = [
@@ -34,26 +34,15 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
   String currentMove = "up";
   String currentMoveKey = "up";
 
-  // late AnimationController _animationController;
-  // late Animation<double> _animation;
-
   @override
   void initState() {
     super.initState();
-
-    // _animationController = AnimationController(
-    //   duration: const Duration(milliseconds: 250),
-    //   vsync: this,
-    // );
-    //
-    // _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
   }
 
   @override
   void dispose() {
     _timer.cancel();
     _roundTimer.cancel();
-    // _animationController.dispose();
     super.dispose();
   }
 
@@ -65,11 +54,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
         _streak++;
         currentMove = moves[Random().nextInt(moves.length)];
         currentMoveKey = currentMove + Random().nextInt(1000000).toString();
-
-        print(currentMoveKey);
       });
-      // _animationController.reset();
-      // _animationController.forward();
     } else {
       endGame();
     }
@@ -148,7 +133,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
             _isStart == true ? const SizedBox(height: 20) : const SizedBox(height: 0),
             _isStart == true
                 ? Text(
-                    "Timer: " + _gameTime.toString(),
+                    "Timer: $_gameTime",
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontSize: 18,
                         ),
@@ -156,7 +141,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
                 : const SizedBox(height: 0),
             const SizedBox(height: 20),
             Text(
-              "Score: " + _score.toString(),
+              "Score: $_score",
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     fontSize: 18,
                   ),
@@ -193,7 +178,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
             _isStart == true
                 ? SizedBox(
                     height: 20,
-                    width: MediaQuery.of(context).size.width > 400 ? 400 : MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width > 400 ? 380 : MediaQuery.of(context).size.width * 0.8,
                     child: LinearProgressIndicator(
                       value: _currentRoundDurationMs / _roundDurationMs,
                       backgroundColor: Colors.grey[200],
@@ -201,7 +186,7 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
                     ),
                   )
                 : const SizedBox(height: 20),
-
+            const SizedBox(height: 20),
             _isStart == true
                 ? GestureDetector(
                     onPanEnd: (details) {

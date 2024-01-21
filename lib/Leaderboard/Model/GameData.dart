@@ -9,7 +9,9 @@ class GameData {
 
   GameData({
     required this.game,
-    required this.scores, required this.bestScore, required this.totalScore,
+    required this.scores,
+    required this.bestScore,
+    required this.totalScore,
   });
 
   Map<String, dynamic> toMap() {
@@ -23,7 +25,6 @@ class GameData {
   }
 
   factory GameData.fromMap(Map<String, dynamic> map) {
-
     List<Score> scores = [];
     if (map['scores'] != null) {
       for (var score in map['scores']) {
@@ -42,12 +43,12 @@ class GameData {
     );
   }
 
-  toJSONEncodable() {
-    Map<String, dynamic> m = new Map();
+  toJSON() {
+    Map<String, dynamic> m = {};
 
     m['game'] = game;
-    m['scores'] = scores.map((e) => e.toJSONEncodable()).toList();
-    m['bestScore'] = bestScore.toJSONEncodable();
+    m['scores'] = scores.map((e) => e.toJSON()).toList();
+    m['bestScore'] = bestScore.toJSON();
     m['totalScore'] = totalScore;
 
     return m;

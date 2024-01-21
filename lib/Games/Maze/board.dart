@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Board extends StatefulWidget {
-  Board(
+  const Board(
       {Key? key,
       required this.grid,
       required this.rows,

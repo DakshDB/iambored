@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
         body: Padding(
       padding: const EdgeInsets.only(top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width > 600 ? 600 : MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
                 builder: (BuildContext context, BoxConstraints constraints) {
                   // Calculate the width of the 'DB - ' text
                   final textPainter = TextPainter(
-                    text: TextSpan(text: ' DB ~ ', style: TextStyle(fontSize: 10)),
+                    text: const TextSpan(text: ' DB ~ ', style: TextStyle(fontSize: 10)),
                     maxLines: 1,
                     textDirection: TextDirection.ltr,
                   )..layout(minWidth: 0, maxWidth: double.infinity);

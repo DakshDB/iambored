@@ -18,15 +18,15 @@ Future<void> recordScore(String game, double score) async {
   await scores.ready;
   var data = scores.getItem(game);
   data ??= GameData(
-      game: game,
-      scores: [],
-      bestScore: Score(
-        id: 0,
-        score: 0,
-        timestamp: DateTime.now(),
-      ),
-      totalScore: 0,
-    ).toJSONEncodable();
+    game: game,
+    scores: [],
+    bestScore: Score(
+      id: 0,
+      score: 0,
+      timestamp: DateTime.now(),
+    ),
+    totalScore: 0,
+  ).toJSON();
 
   GameData gameData = GameData.fromMap(data);
 
@@ -35,11 +35,10 @@ Future<void> recordScore(String game, double score) async {
     id: gameData.scores.length,
     score: score,
     timestamp: DateTime.now(),
-
   ));
 
   // Sort the scores
-  gameData.scores.sort((a, b) => b.score.compareTo(a.score) == gameScoreOrder? 1 : -1);
+  gameData.scores.sort((a, b) => b.score.compareTo(a.score) == gameScoreOrder ? 1 : -1);
 
   // Update the best score
   gameData.bestScore = gameData.scores[0];
@@ -48,7 +47,7 @@ Future<void> recordScore(String game, double score) async {
   gameData.totalScore = gameData.scores.fold(0, (previousValue, element) => previousValue + element.score);
 
   // Save the data
-  scores.setItem(game, gameData.toJSONEncodable());
+  scores.setItem(game, gameData.toJSON());
 }
 
 Future<List<Score>> getScores(String game) async {
@@ -97,6 +96,3 @@ Future<int> getGamesPlayed(String game) async {
   GameData gameData = GameData.fromMap(data);
   return gameData.scores.length;
 }
-
-
-

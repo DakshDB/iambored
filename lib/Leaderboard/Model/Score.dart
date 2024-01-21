@@ -25,7 +25,7 @@ class Score {
     );
   }
 
-  toJSONEncodable() {
+  toJSON() {
     Map<String, dynamic> m = {};
 
     m['id'] = id;
