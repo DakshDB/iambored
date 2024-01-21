@@ -116,103 +116,106 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Speed Swipe',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Text(
-              'Swipe in the indicated direction',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontSize: 16,
-                  ),
-            ),
-            _isStart == true ? const SizedBox(height: 20) : const SizedBox(height: 0),
-            _isStart == true
-                ? Text(
-                    "Timer: $_gameTime",
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          fontSize: 18,
-                        ),
-                  )
-                : const SizedBox(height: 0),
-            const SizedBox(height: 20),
-            Text(
-              "Score: $_score",
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    fontSize: 18,
-                  ),
-            ),
-            _isStart == false ? const SizedBox(height: 40) : const SizedBox(height: 0),
-            _isStart == false
-                ? ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.black,
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onPanEnd: (details) {
+          if (_isStart == true) {
+            // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+            int sensitivity = 8;
+            if (details.velocity.pixelsPerSecond.dx.abs() > details.velocity.pixelsPerSecond.dy.abs()) {
+              // Horizontal swipe
+              if (details.velocity.pixelsPerSecond.dx > sensitivity) {
+                // Right Swipe
+                _checkAnswer("right");
+              } else if (details.velocity.pixelsPerSecond.dx < -sensitivity) {
+                //Left Swipe
+                _checkAnswer("left");
+              }
+            } else {
+              // Vertical swipe
+              if (details.velocity.pixelsPerSecond.dy > sensitivity) {
+                // Down Swipe
+                _checkAnswer("down");
+              } else if (details.velocity.pixelsPerSecond.dy < -sensitivity) {
+                // Up Swipe
+                _checkAnswer("up");
+              }
+            }
+          }
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Speed Swipe',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              Text(
+                'Swipe in the indicated direction',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontSize: 16,
                     ),
-                    onPressed: () {
-                      startGame();
-                    },
-                    child: const Text('Start'),
-                  )
-                : const SizedBox(height: 20),
-            _isStart == false ? const SizedBox(height: 20) : const SizedBox(height: 0),
-            _isStart == false
-                ? ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              ),
+              _isStart == true ? const SizedBox(height: 20) : const SizedBox(height: 0),
+              _isStart == true
+                  ? Text(
+                      "Timer: $_gameTime",
+                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                            fontSize: 18,
+                          ),
+                    )
+                  : const SizedBox(height: 0),
+              const SizedBox(height: 20),
+              Text(
+                "Score: $_score",
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontSize: 18,
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Back'),
-                  )
-                : const SizedBox(height: 20),
-            // Add a progress bar here for the round timer
-            _isStart == true
-                ? SizedBox(
-                    height: 20,
-                    width: MediaQuery.of(context).size.width > 400 ? 380 : MediaQuery.of(context).size.width * 0.8,
-                    child: LinearProgressIndicator(
-                      value: _currentRoundDurationMs / _roundDurationMs,
-                      backgroundColor: Colors.grey[200],
-                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.black),
-                    ),
-                  )
-                : const SizedBox(height: 20),
-            const SizedBox(height: 20),
-            _isStart == true
-                ? GestureDetector(
-                    onPanEnd: (details) {
-                      // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                      int sensitivity = 8;
-                      if (details.velocity.pixelsPerSecond.dx.abs() > details.velocity.pixelsPerSecond.dy.abs()) {
-                        // Horizontal swipe
-                        if (details.velocity.pixelsPerSecond.dx > sensitivity) {
-                          // Right Swipe
-                          _checkAnswer("right");
-                        } else if (details.velocity.pixelsPerSecond.dx < -sensitivity) {
-                          //Left Swipe
-                          _checkAnswer("left");
-                        }
-                      } else {
-                        // Vertical swipe
-                        if (details.velocity.pixelsPerSecond.dy > sensitivity) {
-                          // Down Swipe
-                          _checkAnswer("down");
-                        } else if (details.velocity.pixelsPerSecond.dy < -sensitivity) {
-                          // Up Swipe
-                          _checkAnswer("up");
-                        }
-                      }
-                    },
-                    child: Card(
+              ),
+              _isStart == false ? const SizedBox(height: 40) : const SizedBox(height: 0),
+              _isStart == false
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black,
+                      ),
+                      onPressed: () {
+                        startGame();
+                      },
+                      child: const Text('Start'),
+                    )
+                  : const SizedBox(height: 20),
+              _isStart == false ? const SizedBox(height: 20) : const SizedBox(height: 0),
+              _isStart == false
+                  ? ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Back'),
+                    )
+                  : const SizedBox(height: 20),
+              // Add a progress bar here for the round timer
+              _isStart == true
+                  ? SizedBox(
+                      height: 20,
+                      width: MediaQuery.of(context).size.width > 400 ? 380 : MediaQuery.of(context).size.width * 0.8,
+                      child: LinearProgressIndicator(
+                        value: _currentRoundDurationMs / _roundDurationMs,
+                        backgroundColor: Colors.grey[200],
+                        valueColor: const AlwaysStoppedAnimation<Color>(Colors.black),
+                      ),
+                    )
+                  : const SizedBox(height: 20),
+              const SizedBox(height: 20),
+              _isStart == true
+                  ? Card(
                       elevation: 4,
                       color: Colors.grey[200],
                       child: Padding(
@@ -236,23 +239,23 @@ class _SpeedSwipeState extends State<SpeedSwipe> with SingleTickerProviderStateM
                           ),
                         ),
                       ),
-                    ),
-                  )
-                : const SizedBox(height: 20),
-            const SizedBox(height: 40),
-            _isStart == true
-                ? ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.black,
-                    ),
-                    onPressed: () {
-                      endGame(ifRecordScore: false);
-                    },
-                    child: const Text('End'),
-                  )
-                : const SizedBox(height: 20),
-          ],
+                    )
+                  : const SizedBox(height: 20),
+              const SizedBox(height: 40),
+              _isStart == true
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black,
+                      ),
+                      onPressed: () {
+                        endGame(ifRecordScore: false);
+                      },
+                      child: const Text('End'),
+                    )
+                  : const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

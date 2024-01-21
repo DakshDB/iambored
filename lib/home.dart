@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
     'Tapper': const Tapper(),
     'Alphabet': const Alphabet(),
     'Recall Rumble': const RecallRumble(),
-    'SpeedSwipe': const SpeedSwipe(),
+    'Speed Swipe': const SpeedSwipe(),
   };
 
   @override
