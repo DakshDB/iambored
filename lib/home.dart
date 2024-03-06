@@ -49,6 +49,8 @@ class _HomeState extends State<Home> {
       gridCount = 1;
     }
 
+    int titleCount = 0;
+
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.only(top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
@@ -59,9 +61,24 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 40),
-              Text(
-                'I am Bored',
-                style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () {
+                  if (titleCount == 5) {
+                    titleCount = 0;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Bored(),
+                      ),
+                    );
+                  } else {
+                    titleCount++;
+                  }
+                },
+                child: Text(
+                  'I am Bored',
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 20),
               Expanded(
