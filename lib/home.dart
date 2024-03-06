@@ -3,6 +3,7 @@ import 'package:iambored/Games/Alphabet/home.dart';
 import 'package:iambored/Games/OrderOrder/home.dart';
 import 'package:iambored/Games/Reflector/home.dart';
 
+import 'Games/Bored/home.dart';
 import 'Games/CatchDot/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/Focus/home.dart';
@@ -24,6 +25,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map<String, Widget> games = {
+    'Bored': const Bored(),
     'Life Game': const LifeGame(),
     'Spot Dot': const SpotDot(),
     'Catch Dot': const CatchDot(),

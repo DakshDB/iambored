@@ -19,7 +19,7 @@ class _LeaderboardState extends State<Leaderboard> {
   var averageScore = 0.0;
   var gamesPlayed = 0;
   List<Score> scores = [];
-  String selectedGame = 'react_right';
+  String selectedGame = 'bored';
 
   @override
   initState() {
@@ -84,6 +84,20 @@ class _LeaderboardState extends State<Leaderboard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'bored';
+                                  getData(game);
+                                },
+                                child: const Text('Bored'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
