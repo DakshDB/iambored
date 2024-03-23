@@ -319,7 +319,11 @@ class _SpotOutState extends State<SpotOut> {
         if (retries > maxRetries) {
           break;
         }
-      } while (shapes.any((element) => sqrt(pow(element.x - randomX, 2) + pow(element.y - randomY, 2)) < 100));
+      } while (shapes.any((element) => sqrt(pow(element.x - randomX, 2) + pow(element.y - randomY, 2)) < 2 * radius));
+
+      if (shapes.any((element) => sqrt(pow(element.x - randomX, 2) + pow(element.y - randomY, 2)) < 2 * radius)) {
+        continue;
+      }
 
       var shape = possibleShapes[random.nextInt(possibleShapes.length)];
 
