@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iambored/Games/Alphabet/home.dart';
 import 'package:iambored/Games/OrderOrder/home.dart';
 import 'package:iambored/Games/Reflector/home.dart';
+import 'package:iambored/Games/SpotOut/home.dart';
 
 import 'Games/Bored/home.dart';
 import 'Games/CatchDot/home.dart';
@@ -27,10 +28,11 @@ class _HomeState extends State<Home> {
   Map<String, Widget> games = {
     'Bored': const Bored(),
     'Life Game': const LifeGame(),
-    'Spot Dot': const SpotDot(),
+    'Spot Out': const SpotOut(),
     'Catch Dot': const CatchDot(),
     'Speed Clicker': const SpeedClicker(),
     'Find Dot': const FindDot(),
+    'Spot Dot': const SpotDot(),
     // 'Maze': const Maze(),
     'Reflector': const Reflector(),
     'Order Order': const OrderOrder(),

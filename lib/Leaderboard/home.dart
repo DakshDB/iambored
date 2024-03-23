@@ -104,6 +104,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                   backgroundColor: Colors.black,
                                 ),
                                 onPressed: () {
+                                  var game = 'spot_out';
+                                  getData(game);
+                                },
+                                child: const Text('Spot Out'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
                                   var game = 'react_right';
                                   getData(game);
                                 },

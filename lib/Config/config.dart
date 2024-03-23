@@ -11,4 +11,6 @@ var gameScoreOrderMap = {
   'recall_rumble': 1,
   'speed_swipe': 1,
   'react_right': 1,
+  'spot_out': 1,
+  'bored': 1,
 };
