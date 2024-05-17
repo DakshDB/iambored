@@ -104,6 +104,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                   backgroundColor: Colors.black,
                                 ),
                                 onPressed: () {
+                                  var game = 'color_catch';
+                                  getData(game);
+                                },
+                                child: const Text('Color Catch'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
                                   var game = 'spot_out';
                                   getData(game);
                                 },
@@ -332,7 +346,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 height: 10,
                               ),
                               Text(
-                                averageScore.toString(),
+                                averageScore.toStringAsFixed(1),
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
@@ -354,7 +368,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 height: 10,
                               ),
                               Text(
-                                bestScore.score.toString(),
+                                bestScore.score.toStringAsFixed(1),
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
@@ -461,7 +475,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                       DataCell(Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text(scores[index].score.toString()),
+                                          Text(scores[index].score.toStringAsFixed(1)),
                                         ],
                                       )),
                                       DataCell(Row(

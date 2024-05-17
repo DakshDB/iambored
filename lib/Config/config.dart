@@ -13,4 +13,5 @@ var gameScoreOrderMap = {
   'react_right': 1,
   'spot_out': 1,
   'bored': 1,
+  'color_catch': 1,
 };

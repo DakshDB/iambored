@@ -6,6 +6,7 @@ import 'package:iambored/Games/SpotOut/home.dart';
 
 import 'Games/Bored/home.dart';
 import 'Games/CatchDot/home.dart';
+import 'Games/ColorCatch/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
@@ -42,6 +43,7 @@ class _HomeState extends State<Home> {
     'Recall Rumble': const RecallRumble(),
     'Speed Swipe': const SpeedSwipe(),
     'React Right': const ReactRight(),
+    'Color Catch': const ColorCatch(),
   };
 
   @override
