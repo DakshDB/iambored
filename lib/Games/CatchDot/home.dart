@@ -7,13 +7,11 @@ import 'package:iambored/Leaderboard/Services/ScoreRecorder.dart';
 class CatchDot extends StatefulWidget {
   const CatchDot({super.key});
 
-
   @override
   State<CatchDot> createState() => _CatchDotState();
 }
 
 class _CatchDotState extends State<CatchDot> {
-
   var blockX = 0.0;
   var blockY = 0.0;
 
@@ -37,16 +35,15 @@ class _CatchDotState extends State<CatchDot> {
   double vectorDistance = 0;
 
   _onTapUp(TapUpDetails details) {
-      // If the tap is within the dot, increase the score
-      // Calculate the distance between the tap and the dot
-      vectorDistance = sqrt(pow(details.globalPosition.dx - blockX, 2) + pow(details.globalPosition.dy - blockY, 2));
-      if (vectorDistance < 32) {
-        setState(() {
-          score++;
-          blockVisible = false;
-        });
-      }
-
+    // If the tap is within the dot, increase the score
+    // Calculate the distance between the tap and the dot
+    vectorDistance = sqrt(pow(details.globalPosition.dx - blockX, 2) + pow(details.globalPosition.dy - blockY, 2));
+    if (vectorDistance < 32) {
+      setState(() {
+        score++;
+        blockVisible = false;
+      });
+    }
   }
 
   _moveToRandomPosition() {
@@ -72,12 +69,12 @@ class _CatchDotState extends State<CatchDot> {
     var timerPeriod = Duration(milliseconds: dotSpeed);
     Timer.periodic(
       timerPeriod,
-          (Timer timer) {
-        if (timer.tick >= timerDuration/(dotSpeed/1000)) {
+      (Timer timer) {
+        if (timer.tick >= timerDuration / (dotSpeed / 1000)) {
           timer.cancel();
           setState(() {
             blockVisible = false;
-            currTimer = (timerDuration -( timer.tick * (dotSpeed.toDouble() /1000))).toInt();
+            currTimer = (timerDuration - (timer.tick * (dotSpeed.toDouble() / 1000))).toInt();
             textVisible = true;
             tapEnabled = false;
             startButtonVisible = true;
@@ -86,14 +83,12 @@ class _CatchDotState extends State<CatchDot> {
         } else {
           setState(() {
             _moveToRandomPosition();
-            currTimer = (timerDuration -( timer.tick * (dotSpeed.toDouble() /1000))).toInt();
+            currTimer = (timerDuration - (timer.tick * (dotSpeed.toDouble() / 1000))).toInt();
           });
         }
       },
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +124,6 @@ class _CatchDotState extends State<CatchDot> {
               ),
             ),
           ),
-
           blockVisible
               ? Positioned(
                   top: blockY,
@@ -193,19 +187,15 @@ class _CatchDotState extends State<CatchDot> {
                       // Back button
                       ElevatedButton(
                         style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                  side: const BorderSide(color: Colors.black)
-                              )
-                          ),
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                          backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                          foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                        child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

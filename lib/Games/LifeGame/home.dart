@@ -30,9 +30,7 @@ class _LifeGameState extends State<LifeGame> {
   int generationTime = 200;
 
   // Create a 2D array of bool to represent the cells of the game board specified by rows and columns
-  List<List<bool>> cells = List.generate(
-      64, (i) => List.generate(32, (i) => false),
-      growable: false);
+  List<List<bool>> cells = List.generate(64, (i) => List.generate(32, (i) => false), growable: false);
 
   // randomly generate the initial state of the game board
   void randomize() {
@@ -44,9 +42,7 @@ class _LifeGameState extends State<LifeGame> {
   }
 
   void nextGeneration() {
-    List<List<bool>> newCells = List.generate(
-        rows, (i) => List.generate(columns, (i) => false),
-        growable: false);
+    List<List<bool>> newCells = List.generate(rows, (i) => List.generate(columns, (i) => false), growable: false);
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
         // count the number of neighbors of the cell which has value true
@@ -80,11 +76,7 @@ class _LifeGameState extends State<LifeGame> {
         if (k == 0 && l == 0) {
           continue;
         }
-        if (i + k >= 0 &&
-            i + k < rows &&
-            j + l >= 0 &&
-            j + l < columns &&
-            cells[i + k][j + l]) {
+        if (i + k >= 0 && i + k < rows && j + l >= 0 && j + l < columns && cells[i + k][j + l]) {
           count++;
         }
       }
@@ -121,8 +113,7 @@ class _LifeGameState extends State<LifeGame> {
       columns = min(columns, maxColumns);
       rows = (columns * ratio).round();
 
-      cells = List.generate(rows, (i) => List.generate(columns, (i) => false),
-          growable: false);
+      cells = List.generate(rows, (i) => List.generate(columns, (i) => false), growable: false);
       setState(() {
         randomize();
       });
@@ -240,22 +231,16 @@ class _LifeGameState extends State<LifeGame> {
               children: [
                 ElevatedButton(
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            side: const BorderSide(color: Colors.black))),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                    backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                    foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed: () {
                     showDialog(
                       context: context,
                       builder: (ctx) => const AlertDialog(
-                        title: Text("How to play",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        title: Text("How to play", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         content: Text(
                             "The Life games is played on a grid of cells, where each cell can be either alive or dead. "
                             "At each step in time, the following transitions occur:\n\n"
@@ -266,29 +251,21 @@ class _LifeGameState extends State<LifeGame> {
                       ),
                     );
                   },
-                  child: const Text("How to play",
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold)),
+                  child: const Text("How to play", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 20),
                 // Back button
                 ElevatedButton(
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            side: const BorderSide(color: Colors.black))),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                    backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                    foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Back',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold)),
+                  child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

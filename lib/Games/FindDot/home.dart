@@ -17,7 +17,6 @@ class Dot {
 class FindDot extends StatefulWidget {
   const FindDot({super.key});
 
-
   @override
   State<FindDot> createState() => _FindDotState();
 }
@@ -49,8 +48,15 @@ class _FindDotState extends State<FindDot> {
 
   List<Dot> dots = [];
 
-  List<Color> colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.purple, Colors.orange, Colors.grey];
-
+  List<Color> colors = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.yellow,
+    Colors.purple,
+    Colors.orange,
+    Colors.grey
+  ];
 
   _getRandomColor() {
     var random = Random();
@@ -60,7 +66,7 @@ class _FindDotState extends State<FindDot> {
   // Create list of dots at random positions on the screen
   _createDots() {
     var height = boardHeight;
-    var width =  boardWidth;
+    var width = boardWidth;
 
     var area = height * width;
 
@@ -81,7 +87,7 @@ class _FindDotState extends State<FindDot> {
     var ranX = random.nextInt(100);
     var ranY = random.nextInt(100);
 
-    var x = ranX * boardWidth / 100  + dotSize/2;
+    var x = ranX * boardWidth / 100 + dotSize / 2;
     var y = ranY * boardHeight / 100 + dotSize / 2;
 
     // Check if dot is too close to another dot
@@ -89,7 +95,7 @@ class _FindDotState extends State<FindDot> {
       return;
     }
     // Check if dot is too close to the edge of the screen
-    if (x < dotSize/2 || x > boardWidth - dotSize || y < dotSize/2 || y > boardHeight - dotSize) {
+    if (x < dotSize / 2 || x > boardWidth - dotSize || y < dotSize / 2 || y > boardHeight - dotSize) {
       return;
     }
 
@@ -120,7 +126,6 @@ class _FindDotState extends State<FindDot> {
     var msLeft = startTimerDurationSeconds * 1000;
     var milliseconds = const Duration(milliseconds: 10);
 
-
     Timer.periodic(milliseconds, (timer) {
       setState(() {
         msLeft -= 50;
@@ -131,7 +136,6 @@ class _FindDotState extends State<FindDot> {
         }
       });
     });
-
   }
 
   _startTimer() {
@@ -144,7 +148,6 @@ class _FindDotState extends State<FindDot> {
       var msLeft = timerDurationSeconds * 1000;
       var milliseconds = const Duration(milliseconds: 100);
 
-
       Timer.periodic(milliseconds, (timer) {
         setState(() {
           msLeft -= 100;
@@ -156,8 +159,6 @@ class _FindDotState extends State<FindDot> {
         });
       });
     });
-
-
   }
 
   _endGame() {
@@ -171,11 +172,8 @@ class _FindDotState extends State<FindDot> {
         timerString = '0.00';
       });
     });
-
   }
 
-
-  
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -185,58 +183,55 @@ class _FindDotState extends State<FindDot> {
     boardHeight = height * 0.9;
 
     return Scaffold(
-      body: Center(
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Visibility(
+            visible: startButtonVisible,
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Visibility(
-              visible: startButtonVisible,
-              child: Column(
-                children: [
-                  Text(
-                    'Find Dot',
-                    style: Theme.of(context).textTheme.headlineMedium,
+              children: [
+                Text(
+                  'Find Dot',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 20),
+                // Score
+                Text(
+                  'Score: $score',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 20),
+                // Start button
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.black,
                   ),
-                  const SizedBox(height: 20),
-                  // Score
-                  Text(
-                    'Score: $score',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                  onPressed: () {
+                    _startGame();
+                  },
+                  child: const Text('Start'),
+                ),
+                const SizedBox(height: 20),
+                // Back button
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                    backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                    foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                   ),
-                  const SizedBox(height: 20),
-                  // Start button
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, backgroundColor: Colors.black,
-                    ),
-                    onPressed: () {
-                        _startGame();
-                    },
-                    child: const Text('Start'),
-                  ),
-                  const SizedBox(height: 20),
-                  // Back button
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0),
-                              side: const BorderSide(color: Colors.black)
-                          )
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                  ),
-                ],
-              ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                ),
+              ],
             ),
-            // Board
-            Visibility(
+          ),
+          // Board
+          Visibility(
               visible: boardVisible,
               child: Column(
                 children: [
@@ -253,26 +248,28 @@ class _FindDotState extends State<FindDot> {
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         // Color to find
-                         Column(
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Find all the ',
                               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                             ),
-                            !startTimerVisible ? Container(
-                              width: dotSize,
-                              height: dotSize,
-                              decoration: BoxDecoration(
-                                color: colorToFind,
-                                shape: BoxShape.circle,
-                              ),
-                            ) :
-                            // Start timer
-                            Text(
-                              startTimerString,
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
+                            !startTimerVisible
+                                ? Container(
+                                    width: dotSize,
+                                    height: dotSize,
+                                    decoration: BoxDecoration(
+                                      color: colorToFind,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  )
+                                :
+                                // Start timer
+                                Text(
+                                    startTimerString,
+                                    style: Theme.of(context).textTheme.headlineSmall,
+                                  ),
                           ],
                         ),
                         // Timer
@@ -314,13 +311,11 @@ class _FindDotState extends State<FindDot> {
                             ),
                           );
                         }).toList(),
-                      )
-            ),
+                      )),
                 ],
-              )
-            ),
-          ],
-        ),   )
-    );
+              )),
+        ],
+      ),
+    ));
   }
 }

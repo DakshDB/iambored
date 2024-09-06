@@ -7,13 +7,11 @@ import 'package:iambored/Leaderboard/Services/ScoreRecorder.dart';
 class SpotDot extends StatefulWidget {
   const SpotDot({super.key});
 
-
   @override
   State<SpotDot> createState() => _SpotDotState();
 }
 
-class _SpotDotState extends State<SpotDot>
-    with SingleTickerProviderStateMixin {
+class _SpotDotState extends State<SpotDot> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
   double _circleSize = 0;
@@ -125,15 +123,14 @@ class _SpotDotState extends State<SpotDot>
 
     score = score + (10 - distance.toInt());
 
-    _animation =
-        Tween<double>(begin: 0, end: vectorDistance * 2).animate(_controller!)
-          ..addListener(() {
-            setState(() {
-              _circleSize = _animation!.value;
-              _circleOffsetTop = -(_circleSize / 2);
-              _circleOffsetLeft = -(_circleSize / 2);
-            });
-          });
+    _animation = Tween<double>(begin: 0, end: vectorDistance * 2).animate(_controller!)
+      ..addListener(() {
+        setState(() {
+          _circleSize = _animation!.value;
+          _circleOffsetTop = -(_circleSize / 2);
+          _circleOffsetLeft = -(_circleSize / 2);
+        });
+      });
 
     setState(() {
       timerVisible = false;
@@ -405,19 +402,15 @@ class _SpotDotState extends State<SpotDot>
                       // Back button
                       ElevatedButton(
                         style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                  side: const BorderSide(color: Colors.black)
-                              )
-                          ),
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                          backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                          foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('Back', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                        child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

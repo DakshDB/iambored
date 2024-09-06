@@ -478,11 +478,11 @@ class _OrderOrderState extends State<OrderOrder> {
                             const SizedBox(height: 20),
                             ElevatedButton(
                               style: ButtonStyle(
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4.0),
                                     side: const BorderSide(color: Colors.black))),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                                foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                               ),
                               onPressed: () {
                                 Navigator.pop(context);

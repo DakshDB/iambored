@@ -16,6 +16,7 @@ import 'Games/SpeedClicker/home.dart';
 import 'Games/SpeedSwipe/home.dart';
 import 'Games/SpotDot/home.dart';
 import 'Games/Tapper/home.dart';
+import 'Games/WordHunt/home.dart';
 import 'Leaderboard/home.dart';
 
 class Home extends StatefulWidget {
@@ -28,6 +29,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map<String, Widget> games = {
     'Bored': const Bored(),
+    'Word Hunt': const WordHunt(),
     'Life Game': const LifeGame(),
     'Spot Out': const SpotOut(),
     'Catch Dot': const CatchDot(),
@@ -116,10 +118,10 @@ class _HomeState extends State<Home> {
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                  foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                 ),
                 onPressed: () {
                   Navigator.push(
