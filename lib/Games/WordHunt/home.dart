@@ -155,8 +155,8 @@ class _WordHuntState extends State<WordHunt> {
             _updateKeyStatus(currentGuess[i], Colors.orange);
           }
         } else {
-          feedback.add(Colors.grey);
-          _updateKeyStatus(currentGuess[i], Colors.grey);
+          feedback.add(Colors.grey[700]!);
+          _updateKeyStatus(currentGuess[i], Colors.grey[700]!);
         }
       }
       setState(() {
@@ -222,13 +222,14 @@ class _WordHuntState extends State<WordHunt> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              'Timer: $startTimerString',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                            if (_isGameStarted)
+                              Text(
+                                'Timer: $startTimerString',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ),
