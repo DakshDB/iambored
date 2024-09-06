@@ -96,7 +96,6 @@ class _WordHuntState extends State<WordHunt> {
       _clearKeyStatus();
       _getRandWord();
     });
-    print('Target Word: $targetWord');
     _startTimer();
   }
 
@@ -124,9 +123,7 @@ class _WordHuntState extends State<WordHunt> {
       if (guessedWord.isEmpty) {
         score = 0;
       } else {
-        print('maxTries: $maxTries, triesTaken: ${userGuesses.length}, timeTaken: $startTimerString');
         score = calculateScore(maxTries, userGuesses.length, startTimerString);
-        print('Score: $score');
       }
 
       recordScore("word_hunt", score);
