@@ -169,11 +169,11 @@ class _WordHuntState extends State<WordHunt> {
       if (userGuesses.last == targetWord) {
         guessedWord = targetWord;
         _gameOver();
-      }
-
-      // If the user has reached the maximum number of tries
-      if (userGuesses.length == maxTries) {
-        _gameOver();
+      } else {
+        // If the user has reached the maximum number of tries
+        if (userGuesses.length == maxTries) {
+          _gameOver();
+        }
       }
     }
   }
