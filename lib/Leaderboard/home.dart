@@ -29,8 +29,12 @@ class _LeaderboardState extends State<Leaderboard> {
 
   getData(String game) async {
     selectedGame = game;
-    List responses =
-        await Future.wait([getScores(game), getAverageScore(game), getGamesPlayed(game), getBestScore(game)]);
+    List responses = await Future.wait([
+      getScores(game),
+      getAverageScore(game),
+      getGamesPlayed(game),
+      getBestScore(game)
+    ]);
     setState(() {
       scores = responses[0];
       averageScore = responses[1];
@@ -69,7 +73,9 @@ class _LeaderboardState extends State<Leaderboard> {
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge
-                            ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                            ?.copyWith(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                       ),
                       // Row of buttons for each game
                       const SizedBox(
@@ -94,6 +100,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                   getData(game);
                                 },
                                 child: const Text('Bored'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'mine_quest';
+                                  getData(game);
+                                },
+                                child: const Text('Mine Quest'),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -324,11 +344,15 @@ class _LeaderboardState extends State<Leaderboard> {
                         height: 10,
                       ),
                       Text(
-                        selectedGame[0].toUpperCase() + selectedGame.substring(1).replaceAll('_', ' '),
+                        selectedGame[0].toUpperCase() +
+                            selectedGame.substring(1).replaceAll('_', ' '),
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium
-                            ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
+                            ?.copyWith(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22),
                       ),
                       const SizedBox(
                         height: 10,
@@ -354,7 +378,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -364,7 +390,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -376,7 +404,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -386,7 +416,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -398,7 +430,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -408,7 +442,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
-                                    ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                                    ?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -428,7 +464,8 @@ class _LeaderboardState extends State<Leaderboard> {
                       Expanded(
                         child: SizedBox(
                           child: ScrollConfiguration(
-                            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            behavior: ScrollConfiguration.of(context)
+                                .copyWith(scrollbars: false),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: DataTable(
@@ -436,12 +473,14 @@ class _LeaderboardState extends State<Leaderboard> {
                                   DataColumn(
                                     label: Expanded(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Rank',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
                                           ),
                                         ],
                                       ),
@@ -450,12 +489,14 @@ class _LeaderboardState extends State<Leaderboard> {
                                   DataColumn(
                                     label: Expanded(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Score',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
                                           ),
                                         ],
                                       ),
@@ -464,12 +505,14 @@ class _LeaderboardState extends State<Leaderboard> {
                                   DataColumn(
                                     label: Expanded(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Date',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontStyle: FontStyle.italic),
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
                                           ),
                                         ],
                                       ),
@@ -481,21 +524,27 @@ class _LeaderboardState extends State<Leaderboard> {
                                   (int index) => DataRow(
                                     cells: <DataCell>[
                                       DataCell(Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text((index + 1).toString()),
                                         ],
                                       )),
                                       DataCell(Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Text(scores[index].score.toStringAsFixed(1)),
+                                          Text(scores[index]
+                                              .score
+                                              .toStringAsFixed(1)),
                                         ],
                                       )),
                                       DataCell(Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Text(DateFormat('dd-MM-yyyy / kk:mm').format(scores[index].timestamp)),
+                                          Text(DateFormat('dd-MM-yyyy / kk:mm')
+                                              .format(scores[index].timestamp)),
                                         ],
                                       )),
                                     ],
@@ -517,15 +566,23 @@ class _LeaderboardState extends State<Leaderboard> {
                       // Add separator line
                       ElevatedButton(
                         style: ButtonStyle(
-                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
-                          backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                          foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
+                          shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  side: const BorderSide(color: Colors.black))),
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(Colors.white),
+                          foregroundColor:
+                              WidgetStateProperty.all<Color>(Colors.black),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('Back', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        child: const Text('Back',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

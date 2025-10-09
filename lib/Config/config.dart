@@ -15,4 +15,5 @@ var gameScoreOrderMap = {
   'bored': 1,
   'color_catch': 1,
   'word_hunt': 1,
+  'mine_quest': 1,
 };

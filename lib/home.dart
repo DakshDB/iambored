@@ -10,6 +10,7 @@ import 'Games/ColorCatch/home.dart';
 import 'Games/FindDot/home.dart';
 import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
+import 'Games/MineQuest/home.dart';
 import 'Games/ReactRight/home.dart';
 import 'Games/RecallRumble/home.dart';
 import 'Games/SpeedClicker/home.dart';
@@ -29,6 +30,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map<String, Widget> games = {
     'Bored': const Bored(),
+    'Mine Quest': const MineQuest(),
     'Word Hunt': const WordHunt(),
     'Life Game': const LifeGame(),
     'Spot Out': const SpotOut(),
@@ -59,10 +61,13 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.only(top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
+      padding: const EdgeInsets.only(
+          top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
       child: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width > 600 ? 600 : MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width > 600
+              ? 600
+              : MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -83,17 +88,25 @@ class _HomeState extends State<Home> {
                 },
                 child: Text(
                   'I am Bored',
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 20),
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: gridCount, // This specifies the number of columns
-                  childAspectRatio: (1 / .35), // This specifies the aspect ratio of the grid items
-                  mainAxisSpacing: 20, // This specifies the vertical spacing between the grid items
-                  crossAxisSpacing: 20, // This specifies the horizontal spacing between the grid items
-                  padding: const EdgeInsets.all(20), // This specifies the padding around the grid
+                  crossAxisCount:
+                      gridCount, // This specifies the number of columns
+                  childAspectRatio: (1 /
+                      .35), // This specifies the aspect ratio of the grid items
+                  mainAxisSpacing:
+                      20, // This specifies the vertical spacing between the grid items
+                  crossAxisSpacing:
+                      20, // This specifies the horizontal spacing between the grid items
+                  padding: const EdgeInsets.all(
+                      20), // This specifies the padding around the grid
                   shrinkWrap: true,
                   children: <Widget>[
                     for (var game in games.keys)
@@ -118,8 +131,10 @@ class _HomeState extends State<Home> {
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0), side: const BorderSide(color: Colors.black))),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          side: const BorderSide(color: Colors.black))),
                   backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   foregroundColor: WidgetStateProperty.all<Color>(Colors.black),
                 ),
@@ -131,7 +146,9 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: const Text('Leaderboard', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                child: const Text('Leaderboard',
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold)),
               ),
 
               //   Add "DB" text to the bottom of the home page
@@ -140,13 +157,15 @@ class _HomeState extends State<Home> {
                 builder: (BuildContext context, BoxConstraints constraints) {
                   // Calculate the width of the 'DB - ' text
                   final textPainter = TextPainter(
-                    text: const TextSpan(text: ' DB ~ ', style: TextStyle(fontSize: 10)),
+                    text: const TextSpan(
+                        text: ' DB ~ ', style: TextStyle(fontSize: 10)),
                     maxLines: 1,
                     textDirection: TextDirection.ltr,
                   )..layout(minWidth: 0, maxWidth: double.infinity);
 
                   // Calculate the number of repetitions needed to cover the screen width
-                  final repetitions = (constraints.maxWidth * 0.85 / textPainter.width).floor();
+                  final repetitions =
+                      (constraints.maxWidth * 0.85 / textPainter.width).floor();
 
                   // Generate the repeated text
                   String repeatedText = ' DB ~ ' * repetitions;
@@ -154,7 +173,10 @@ class _HomeState extends State<Home> {
 
                   return Text(
                     repeatedText,
-                    style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w500, fontSize: 10),
+                    style: TextStyle(
+                        color: Colors.grey[700],
+                        fontWeight: FontWeight.w500,
+                        fontSize: 10),
                   );
                 },
               ),
