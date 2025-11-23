@@ -31,6 +31,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map<String, Widget> games = {
     'Bored': const Bored(),
+    'Perfect Cut': const PerfectCut(),
     'Mine Quest': const MineQuest(),
     'Word Hunt': const WordHunt(),
     'Life Game': const LifeGame(),
@@ -48,7 +49,6 @@ class _HomeState extends State<Home> {
     'Recall Rumble': const RecallRumble(),
     'Speed Swipe': const SpeedSwipe(),
     'React Right': const ReactRight(),
-    'Perfect Cut': const PerfectCut(),
     'Color Catch': const ColorCatch(),
   };
 
