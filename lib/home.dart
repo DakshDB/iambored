@@ -12,6 +12,7 @@ import 'Games/Focus/home.dart';
 import 'Games/LifeGame/home.dart';
 import 'Games/MineQuest/home.dart';
 import 'Games/ReactRight/home.dart';
+import 'Games/PerfectCut/home.dart';
 import 'Games/RecallRumble/home.dart';
 import 'Games/SpeedClicker/home.dart';
 import 'Games/SpeedSwipe/home.dart';
@@ -47,6 +48,7 @@ class _HomeState extends State<Home> {
     'Recall Rumble': const RecallRumble(),
     'Speed Swipe': const SpeedSwipe(),
     'React Right': const ReactRight(),
+    'Perfect Cut': const PerfectCut(),
     'Color Catch': const ColorCatch(),
   };
 

@@ -325,6 +325,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                 },
                                 child: const Text('Find Dot'),
                               ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'perfect_cut';
+                                  getData(game);
+                                },
+                                child: const Text('Perfect Cut'),
+                              ),
                             ],
                           ),
                         ),
