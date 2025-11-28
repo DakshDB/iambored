@@ -339,6 +339,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                 },
                                 child: const Text('Perfect Cut'),
                               ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'vector_vortex';
+                                  getData(game);
+                                },
+                                child: const Text('Vector Vortex'),
+                              ),
                             ],
                           ),
                         ),

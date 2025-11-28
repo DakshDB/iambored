@@ -16,4 +16,5 @@ var gameScoreOrderMap = {
   'color_catch': 1,
   'word_hunt': 1,
   'mine_quest': 1,
+  'vector_vortex': 1,
 };
