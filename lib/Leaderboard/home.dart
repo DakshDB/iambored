@@ -353,6 +353,34 @@ class _LeaderboardState extends State<Leaderboard> {
                                 },
                                 child: const Text('Vector Vortex'),
                               ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'quick_maths';
+                                  getData(game);
+                                },
+                                child: const Text('Quick Maths'),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                ),
+                                onPressed: () {
+                                  var game = 'code_break';
+                                  getData(game);
+                                },
+                                child: const Text('Code Break'),
+                              ),
                             ],
                           ),
                         ),

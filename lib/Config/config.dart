@@ -18,4 +18,6 @@ var gameScoreOrderMap = {
   'mine_quest': 1,
   'vector_vortex': 1,
   'quick_maths': 1,
+  'code_break': 1,
+  'perfect_cut': 1,
 };
