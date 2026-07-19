@@ -20,6 +20,7 @@ import 'Games/SpotDot/home.dart';
 import 'Games/Tapper/home.dart';
 import 'Games/WordHunt/home.dart';
 import 'Games/VectorVortex/home.dart';
+import 'Games/QuickMaths/home.dart';
 import 'Leaderboard/home.dart';
 
 class Home extends StatefulWidget {
@@ -32,6 +33,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map<String, Widget> games = {
     'Bored': const Bored(),
+    'Quick Maths': const QuickMaths(),
     'Vector Vortex': const VectorVortex(),
     'Perfect Cut': const PerfectCut(),
     'Mine Quest': const MineQuest(),
